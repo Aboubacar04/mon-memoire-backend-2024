@@ -1,0 +1,35 @@
+<?php
+
+namespace App\Http\Requests;
+
+use Illuminate\Foundation\Http\FormRequest;
+
+class produitREQUEST extends FormRequest
+{
+    /**
+     * Determine if the user is authorized to make this request.
+     */
+    public function authorize(): bool
+    {
+        return true;
+    }
+
+    /**
+     * Get the validation rules that apply to the request.
+     *
+     * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
+     */
+    public function rules(): array
+    {
+        return [
+            'nom' => ['required'],
+            'parcourt' => ['required'],
+            'prix' => ['required', 'numeric'], // Le prix doit être un nombre
+            'stock' => ['required', 'integer'], // Le stock doit être un entier
+            'description' => ['required'],
+            'image' => ['required','image'], // Valide que le fichier est une image
+            'date' => ['required', 'date'], // Le format de la date doit être valide
+            'categorie_id' => ['required', 'exists:categories,id'],
+        ];
+    }
+}
