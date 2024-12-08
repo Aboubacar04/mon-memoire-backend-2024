@@ -30,6 +30,7 @@ class produitREQUEST extends FormRequest
             'image' => ['required','image'], // Valide que le fichier est une image
             'date' => ['required', 'date'], // Le format de la date doit être valide
             'categorie_id' => ['required', 'exists:categories,id'],
+            'user_id' => ['required', 'exists:users,id'],
         ];
     }
 }

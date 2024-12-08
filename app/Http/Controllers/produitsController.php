@@ -10,7 +10,7 @@ class produitsController extends Controller
 {
     public function listProduits()
     {
-        $produit = produit::with('cat')->get();
+        $produit = produit::with('cat', 'user')->get();
 
         return response()->json($produit);
     }

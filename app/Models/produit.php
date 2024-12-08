@@ -15,11 +15,17 @@ class produit extends Model
         'image',
         'date',
         'categorie_id',
-        'qte'
+        'qte',
+        'user_id'
     ];
 
     public function cat()
     {
         return $this->belongsTo(categorie::class,'categorie_id');
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class,'user_id');
     }
 }
