@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\produitREQUEST;
+use App\Http\Requests\RequestEvaluation;
+use App\Models\evaluation;
 use App\Models\produit;
 use Illuminate\Http\Request;
 
@@ -37,5 +39,10 @@ class produitsController extends Controller
     public function detailProduit(produit $produit)
     {
         return response()->json($produit);
+    }
+
+    public function evaluer(RequestEvaluation $request)
+    {
+        evaluation::create($request->validated());
     }
 }

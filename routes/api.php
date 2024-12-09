@@ -24,3 +24,5 @@ Route::get('listCategorieFruit',[\App\Http\Controllers\CategorieCONTROLLER::clas
 Route::post('auth',[\App\Http\Controllers\AuthController::class,'auth'])->name('auth');
 Route::get('listLegume',[\App\Http\Controllers\CategorieCONTROLLER::class,'legume'])->name('legume');
 Route::get('DetailProduit/{produit}',[\App\Http\Controllers\produitsController::class,'detailProduit'])->name('DetailProduit');
+
+Route::post('ajouterEvaluation',[\App\Http\Controllers\produitsController::class,'evaluer'])->name('evaluer');
