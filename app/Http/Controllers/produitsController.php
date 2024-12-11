@@ -38,7 +38,7 @@ class produitsController extends Controller
 
     public function detailProduit(produit $produit)
     {
-        return response()->json($produit);
+        return response()->json($produit->load('user'));
     }
 
     public function evaluer(RequestEvaluation $request)

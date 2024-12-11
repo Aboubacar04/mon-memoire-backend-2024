@@ -28,4 +28,11 @@ class produit extends Model
     {
         return $this->belongsTo(User::class,'user_id');
     }
+
+    public function commande()
+    {
+        return $this->belongsToMany(commande::class,'commande_produits')
+            ->withPivot('qte', 'prix')
+            ->withTimestamps();
+    }
 }
