@@ -22,14 +22,15 @@ class commandeRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'user_id' => 'required|exists:clients,id',
+            'user_id' => 'required|exists:users,id',
             'adresseLivraison' => 'required|string|max:255',
             'montantTotal' => 'required|numeric',
             'dateCommande' => 'required|date',
             'produits' => 'required|array', // La liste des produits
             'produits.*.id' => 'required|exists:produits,id', // Validation pour chaque produit
-            'produits.*.quantite' => 'required|integer|min:1', // Validation pour la quantité de chaque produit
+            'produits.*.qte' => 'required|integer|min:1', // Validation pour la quantité de chaque produit
             'produits.*.prix' => 'required|numeric', // Validation pour le prix de chaque produit
+            'statut' => 'required'
         ];
     }
 }

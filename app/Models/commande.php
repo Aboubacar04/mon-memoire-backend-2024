@@ -12,13 +12,12 @@ class commande extends Model
         'adresseLivraison',
         'dateCommande',
         'user_id',
+        'statut',
     ];
 
     public function produits()
     {
-        $this->belongsToMany(produit::class,'commande_produits')
-            ->withPivot('qte','prix')
-            ->withTimestamps();
+        return $this->belongsToMany(produit::class,'commande_produits')->withPivot('qte','prix')->withTimestamps();
     }
 }
 

@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\commandeRequest;
 use App\Models\commande;
-use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class commandeController extends Controller
 {
@@ -15,15 +15,28 @@ class commandeController extends Controller
 
 
         $produits = $request->validated()['produits'];
+        Log::info('Données Produit : ', $produits);
+
+        $montantTotal = 0;
 
 
-        foreach ($produits as $produit) {
-            $commande->produits()->attach($produit['id'], [
-                'quantite' => $produit['quantite'],
-                'prix' => $produit['prix'],
+        foreach ($produits as $p) {
+            $commande->produits()->attach($p['id'], [
+                'qte' => $p['qte'],
+                'prix' => $p['prix'],
             ]);
+
+
+            $montantTotal += $p['qte'] * $p['prix'];
         }
-      
-        return response()->json($commande, 201);
+
+        // Mettre à jour le montant total dans la commande (si tu veux le sauvegarder)
+          $commande->montantTotal = $montantTotal;
+          $commande->save();
+
+        return response()->json([
+            'commande' => $commande,
+            'montant_total' => $montantTotal,
+        ], 201);
     }
 }
