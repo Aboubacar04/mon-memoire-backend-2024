@@ -39,4 +39,17 @@ class commandeController extends Controller
             'montant_total' => $montantTotal,
         ], 201);
     }
+
+    public function listcommande()
+    {
+        // Récupérer les commandes avec les produits et les utilisateurs associés
+        $commandes = Commande::with(['produits', 'user'])->get();
+
+        return response()->json([
+            'success' => true,
+            'data' => $commandes,
+        ]);
+    }
+
+
 }

@@ -19,6 +19,10 @@ class commande extends Model
     {
         return $this->belongsToMany(produit::class,'commande_produits')->withPivot('qte','prix')->withTimestamps();
     }
+    public function user()
+    {
+      return  $this->belongsTo(User::class,'user_id');
+    }
 }
 
 
